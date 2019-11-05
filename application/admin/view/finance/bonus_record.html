@@ -1,0 +1,126 @@
+{extend name="common:base" /}
+{block name="style"}
+<style type="text/css">
+.table>thead>tr>th {
+    text-align: center;
+}
+
+.fant {
+    font-weight: 600;
+}
+</style>
+{/block}
+{block name="content"}
+<div class="ibox-content m-b-sm border-bottom">
+    <div class="row">
+     <form  method="get" action="">
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label" for="product_name">会员信息</label>
+                <input type="text" id="kw" name="kw" value="{$kw}" placeholder="可搜索会员昵称/姓名/手机号" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label" for="status">会员等级</label>
+                <select name='level' class='form-control' style="width:150px;">
+                    <option value=''>默认全部</option>
+                    {foreach $levels as $key => $vo}
+                    <option value="{$vo['level']}" {if $level==$vo['level']}selected{/if}>{$vo['levelname']}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+
+    
+
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label">日期</label>
+                <div class="input-daterange input-group" data-provide="datepicker">
+                    <input style="width: 100px" class="form-control input-sm" name="begin_time" type="text" value="{$begin_time}"/>
+                     <span class="input-group-addon">到</span>
+                    <input style="width: 100px" class="form-control input-sm" name="end_time" type="text" value="{$end_time}"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div class="form-group">
+                <label class="control-label" for="status">　</label>
+                <div>
+                    <button class="btn btn-primary">查询</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div class="form-group">
+                <label class="control-label" for="status">　</label>
+                <div>
+                     <a class="btn btn-primary" href="{:url('finance/bonus_record', $exportParam)}">导出Excel</a>
+                </div>
+            </div>
+       </div>
+        
+
+    </div>
+</form>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+       
+        <div class="col-lg-2">
+
+        </div>
+
+        <div class="ibox-content">
+                <div class="table-responsive">
+                    <table class="table  table-bordered table-hover text-center">
+                        <thead>
+                            <tr><th>编号</th>
+                                <th class="col-lg-2">用户ID</th>
+                                <th>会员信息</th>
+                                <th>会员等级</th>
+                                <!-- <th>会员分组</th> -->
+                                <!--<th>原余额</th>-->
+                                <!--<th>支出/赚取</th>-->
+                                <th>金额</th>
+                                <th>记录时间</th>
+                                <th>类型</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead> 
+                        <tbody>
+                            {notempty name="list"}
+                            {volist name="list" id="row"}
+                            <tr><td>
+                                    {$row['id']}
+                            </td>
+                                <td> {$row['mid']}</td>
+                                <td>{$row['realname']}<br/>{$row['mobile']}</td>
+                                <td   class='hidden-xs'>{if empty($row['levelname'])}普通会员{else/}{$row['levelname']}{/if}</td>
+                                <!-- <td   class='hidden-xs'>{if empty($row['groupname'])}无分组{else/}{$row['groupname']}{/if}</td> -->
+                                <td>{$row['money']}</td>
+
+                                <td>{$row['create_time']|date="Y-m-d H:i:s",###}</td>
+                                <td>
+                                    {switch $row.is_day }
+                                        {case 1}月奖金{/case}
+                                        {case 0}日奖金{/case}
+                                        {default /}其他
+                                    {/switch}
+                                </td>
+                                <td>
+                                    <a class='btn btn-default' href="{:url('member/member_edit',array('id' => $row['mid']));}" style="background-color: #7DBAEF; color: #fff;">用户信息</a>		
+                                  
+                                </td>
+                            </tr>
+                            {/volist}
+                            {/notempty}
+                        </tbody>
+                    </table>
+                    {$list->render()}
+                </div>
+            </div>
+    </div>
+{/block}

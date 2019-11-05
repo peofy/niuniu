@@ -1,0 +1,120 @@
+/*public head*/
+.lb_headWrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 20;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	height: .88rem;
+	font-size: .3rem;
+	line-height: .88rem;
+	text-align: center;
+	color: #fff;
+	letter-spacing: .02rem;
+	/*从左到右的渐变色：*/
+	background:-webkit-linear-gradient(left,#00dafd,#00a7ff);
+	background:-o-linear-gradient(right,#00dafd,#00a7ff);
+	background:-moz-linear-gradient(right,#00dafd,#00a7ff);
+	background: linear-gradient(to right,#00dafd,#00a7ff);
+} 
+/*头部 底部线*/
+.lb_headWrap_line {
+	border-bottom: .01rem solid #ccc;
+}
+.lb_headWrap_back_white{
+	
+	background-color:#f8fafb;
+	color:#0d0d0e ;
+	
+}
+/*返回icon box*/
+.lb_headWrap_return {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: .6rem;
+	height: 100%;
+}
+.lb_headWrap_return_img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	width: .19rem;
+	height: .34rem;
+}
+/*（右box-button）文字*/
+.lb_headWrap_text {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	width: 1.4rem;
+	height: 100%;
+	font-size: .26rem;
+	line-height: .88rem;
+	letter-spacing: .02rem;
+}
+.font_000 {
+	color: #0b0b0b;
+}
+/*（右box）分享 图标*/
+.lb_headWrap_share {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	width: 1.04rem;
+	height: 100%;
+}
+.lb_headWrap_share_icon {
+	width: .28rem;
+	height: .3rem;
+}
+/* 个人谈话框-s */
+/* 新消息 */
+.lb_headWrap_dialog{
+	position: absolute;
+	top: 0;
+	left:.6rem;
+	width: .8rem;
+	height: .88rem;
+	line-height: .88rem;
+}
+.lb_headWrap_dialog_text{
+	height: .26rem;
+	line-height: .26rem;
+	text-align: center;
+	padding:0 .1rem;
+	border-radius: .2rem;
+	background: #0df4f7;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+/* 右侧删除图标 */
+.lb_headWrap_remove{
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	width: .8rem;
+	height: 100%;
+}
+.lb_headWrap_remove_img{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	z-index: 1;
+	width: .34rem;
+	height: .34rem;
+}
+/* 个人谈话框-e */

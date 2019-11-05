@@ -1,0 +1,111 @@
+{extend name="common:base" /}
+{block name="style"}
+<style type="text/css">
+.table>thead>tr>th {
+    text-align: center;
+}
+.table>thead>tr>td {
+    text-align: center;
+}
+</style>
+{/block}
+
+{block name="content"}
+<div class="ibox">
+
+
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label">当日奖金池累计:</label>
+            <label class="control-label" >{$total}元</label>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label" >开奖时间:</label>
+            <label class="control-label" >{$lottery_time}</label>
+        </div>
+    </div>
+
+        <div class="ibox-content">
+            <div class="table-responsive">
+                <div class="col-sm-4" style="text-align:center;font-size: 30px">
+                <div class="form-group">
+                <label class="control-label" >名人榜</label>
+                </div>
+                </div>
+                <table class="table  table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th>名次</th>
+                            <th>用户</th>
+                            <th>手机号</th>
+                            <th>推荐</th>
+                        </tr>
+                    </thead> 
+                    <tbody>
+                        {notempty name="list"}
+                        {volist name="list" id="vo"}
+                        <tr>
+                            <td>{$vo['No']}</td>
+                            <td>{$vo['realname']}</td>
+                            <td>{$vo['mobile']}</td>
+                            <td>{$vo['num']}</td>
+                        </tr>
+                        {/volist}
+                        {/notempty}
+                    </tbody>
+                </table>
+
+        </div>
+</div>
+                
+
+
+{/block}
+{block name="script"}
+<script>
+$(function() {
+    // 删除
+    $('.delete').click(function(e) {
+        var id = this.id;
+        layer.confirm('是否确定删除', { icon: 3, title: '提示' }, function(index) {
+
+            $.post("{:url('member/member_delete')}", { id: id }, function(res) {
+                if (res.code) {
+                    layer.msg(res.msg, { icon: 6 });
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    layer.msg(res.msg, { icon: 5 });
+                }
+            });
+        });
+    });
+      // 设置黑名单
+      $('.isblack').click(function(e) {
+        var isblack     = $(this).attr('isblack');
+        var id          = $(this).attr('uid');
+        if(isblack == 1){
+            var stat = '确定取消黑名单';
+        }else{
+            var stat = '确定设置黑名单';
+        }
+        layer.confirm(stat, { icon: 3, title: '提示' }, function(index) {
+
+            $.post("{:url('member/member_isblack')}", { id: id,isblack:isblack }, function(res) {
+                if (res.code) {
+                    layer.msg(res.msg, { icon: 6 });
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    layer.msg(res.msg, { icon: 5 });
+                }
+            });
+        });
+    });
+});
+</script>
+{/block}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+   <head>
+  <meta charset="utf-8">
+  <title>Swiper demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="__STATIC__/nebula/css/index.css">
+
+  <!-- Demo styles -->
+  <style>
+body {
+    width: 100%;
+    height: 100%;
+    background: url(__STATIC__/nebula/img/bj.png);
+}
+.page2con {
+    top: 12rem;
+    
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <ul>
+      <li class="show1"> <a  href=" {:url('Index/mobile_index')}" >首页</a></li>
+    </ul>
+  </header>
+  <div class="swiper-container title" id="box">
+    <div class="swiper-wrapper">
+    <div class="swiper-slide">
+        <div class="page2  Percentage">
+          <div class="page4title">{$res['title']}</div>
+          
+          <div class="page2con">
+           {$res['desc']}
+          </div>
+          
+        </div>
+         
+               
+     
+    </div>  
+</body>
+  <!-- Swiper JS -->
+  <script src="__STATIC__/nebula/js/jquery.min.js"></script>
+  <script src="__STATIC__/nebula/js/swiper.min.js"></script>
+ 
+</html>
+  

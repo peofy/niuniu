@@ -1,0 +1,123 @@
+{extend name="common:base" /}
+{block name="style"}
+<link href="__INSPINIA__/css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+{/block}
+
+{block name="content"}
+<div class="main">
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+
+        <div class="panel panel-default">
+            <div class='panel-body'>
+
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">奖金类选择</label>
+                    <div class="col-sm-9">
+
+                        <label>
+                            <input id="yuejiangjin" type="radio" value="1" name="is_day"  /> 月奖金
+                        </label>
+                        <label style="margin-top:4px; margin-right:20px;">
+                            <input id="rijiangjin" type="radio" value="0" name="is_day" checked/> 日奖金
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group form-group-s">
+                    <label class="col-xs-12 col-sm-2 control-label">奖金名称</label>
+                    <div class="col-sm-8 col-xs-12">
+                        <input type="text" name="levelname" class="form-control" value="{$info.levelname}"
+                               autocomplete="off" />
+                        <!-- <span class="help-block"><strong class="text-danger">微信支付要求公众号为“认证服务号”，该公众号没有微信支付的权限</strong></span>  -->
+                    </div>
+                </div>
+                {if $info.level == 4}
+                <div class="form-group form-group-s">
+                    <label class="col-xs-12 col-sm-2 control-label">全网挖矿收益获得比例 </label>
+                    <div class="input-daterange input-group" style="left:15px;">
+                        <input class="form-control " name="recommend" type="text" value="{$info.recommend * 100}"
+                               autocomplete="off" />
+                        <span class="input-group-addon">%</span>
+                    </div>
+                </div>
+                {else}
+
+                <div class="form-group form-group-s">
+                    <label class="col-xs-12 col-sm-2 control-label">分奖金池比例 </label>
+                    <div class="input-daterange input-group" style="left:15px;">
+                        <input class="form-control " name="recommend" type="text" value="{$info.recommend * 100}"
+                               autocomplete="off" />
+                        <span class="input-group-addon">%</span>
+                    </div>
+                </div>
+
+                <!--<div class="form-group form-group-s">-->
+                <!--<label class="col-xs-12 col-sm-2 control-label">平级比例 </label>-->
+                <!--<div class="input-daterange input-group" style="left:15px;">-->
+                <!--<input class="form-control " name="pingji_level" type="text" value="{$info.pingji_level * 100}"-->
+                <!--autocomplete="off" />-->
+                <!--<span class="input-group-addon">%</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                {/if}
+                <!--<div class="form-group form-group-s">-->
+                <!--<label class="col-xs-12 col-sm-2 control-label">平级获奖层数 </label>-->
+                <!--<div class="input-daterange input-group" style="left:15px;">-->
+                <!--<input class="form-control " name="layer_number" type="text" value="{$info.layer_number}"-->
+                <!--autocomplete="off" disabled />-->
+                <!--</div>-->
+                <!--</div>-->
+                <div class="form-group form-group-s">
+                    <label id="zhitui" class="col-xs-12 col-sm-2 control-label">直推人数 </label>
+                    <label id="mingci" class="col-xs-12 col-sm-2 control-label" hidden>名次 </label>
+                    <div class="input-daterange input-group" style="left:15px;">
+                        {if $info.upgrade == null}
+                        <input class="form-control " name="upgrade" type="text" value="{$info.upgrade}"
+                               autocomplete="off"  />
+                        {else}
+                        <input class="form-control " name="upgrade" type="text" value="{$info.upgrade}"
+                               autocomplete="off" />
+                        {/if}
+                    </div>
+                </div>
+                <div class="form-group form-group-s">
+                    <label class="col-xs-12 col-sm-2 control-label">分奖金条件阐述</label>
+                    <div class="input-daterange input-group" style="left:15px;">
+                        <!-- <span class="input-group-addon">{$info.desc}</span> -->
+                        <input class="form-control " name="desc" type="text" value="{$info.desc}" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"></label>
+                    <div class="col-sm-9 col-xs-12">
+                        <button class="btn btn-primary ajax-post col-lg-1" target-form="form-horizontal"
+                                type="submit">保存</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+    </div>
+{/block}
+{block name="script"}
+<script src="__INSPINIA__/js/plugins/clockpicker/clockpicker.js"></script>
+<script>
+$(function(){
+    $('.clockpicker').clockpicker();
+});
+
+$('input:radio[id="yuejiangjin"]').click(function(){
+   $('#zhitui').css('display','none');
+   $('#mingci').css('display','block')
+
+});
+
+$('input:radio[id="rijiangjin"]').click(function(){
+    $('#zhitui').css('display','block');
+    $('#mingci').css('display','none')
+});
+
+</script>
+{/block}

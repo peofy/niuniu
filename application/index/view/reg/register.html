@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<title class="pageTopTitle" page-id="0">欢迎注册</title>
+	<script src="__STATIC__/register/js/rem.js"></script>
+	<!--public-->
+	<link rel="stylesheet" href="__STATIC__/register/css/public.css" />
+	<!--头部-->
+	<link rel="stylesheet" href="__STATIC__/register/css/public_head.css" />
+	<link rel="stylesheet" type="text/css" href="__STATIC__/register/css/signin.css"/>
+</head>
+<body>
+	<div class="wrapper">
+		<!--public head-->
+		<div class="headWrap">
+			<!-- <p class="lb_headWrap_return" onclick="returnFun()">
+                        <img class="lb_headWrap_return_img" src="__STATIC__/chatWeb/img/public/back@2x.png"/> 
+                   </p> -->
+			<span>手机快速注册</span>
+			</div>
+		{notempty name="realname"}
+		<div class="headWrap">
+			<span>推荐人:{$realname}</span>
+		</div>
+		{/notempty}
+            <!--内容-->
+            <div class="content">
+            	<div class="item_wrap">
+            		<!--手机号/邮箱/用户名-->
+            		<div class="user_name">
+            			<div class="img">
+            				<img src="__STATIC__/register/img/mobile.png" />
+            			</div>
+            			<!--输入手机号-->
+            			<div class="inp">
+            				<input class="text name mobile" type="text" placeholder="手机号" id='mobile' autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')"  maxlength="11"/>
+            			</div>
+					</div>
+						<!--请输入您要设置的密码-->
+            		<!-- <div class="user_name">
+            			<div class="img">
+            				<img src="__STATIC__/register/img/the_lock.png" />
+            			</div>
+            			<div class="inp">
+            				<input class="text name pwd" type="password" placeholder="设置6-9位数字加字母密码" autocomplete="off"  maxlength="9" />
+            			</div>
+							 
+					</div>  -->
+
+						<!--请再输入密码-->
+            		<!-- <div class="user_name">
+            			<div class="img">
+            				<img src="__STATIC__/register/img/the_lock.png" />
+            			</div>
+            			<div class="inp">
+            				<input class="text name" type="password" placeholder="请输入确认密码" id="password2" />
+            			</div>
+            		</div> -->
+
+            		<!--请输入短信验证码-->
+            		<div class="user_name">
+            			<div class="img">
+            				<img src="__STATIC__/register/img/code.png" />
+            			</div>
+            			<!--输入短信验证码-->
+            			<div class="inp">
+            				<input class="put name code" type="text" placeholder="短信验证码" value="" autocomplete="off"  maxlength="9" id='verify_code' name="verify_code" />
+            			</div>
+            			<!--发送短信验证码-->
+            			<div class="btn_wrap">
+              				<input class="gain" type="button" id="btn" value="获取验证码" onclick="settime(this)" />
+              			</div>
+            		</div>
+            	
+					<input type="hidden" name="invite_code" class="invite_code" value="{$uid}">
+            	
+            	</div>
+            	<!--提交按钮-->
+            	<a href="#" class="sub_btn">提交注册</a>
+            	<!-- <a href="javascript:void" id="downloadButton" class="sub_btn">下载</a> -->
+            </div>
+      </div>    
+<script src="__STATIC__/register/js/jquery-1.8.3.js"></script>
+<!-- <script src="__STATIC__/register/js/layer.js"></script> -->
+<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+<script src="__STATIC__/register/js/public.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.js"></script>
+
+<script>
+	//获取验证码
+	var countdown=60; 
+	function settime(val) { 
+            var mobile = $("#mobile").val();
+            var reg =/^0?1[3|4|5|6|7|8|9][0-9]\d{8}$/;
+            if(!reg.test(mobile)){
+                  layer.msg('请输入正确的手机号');
+                  return false;
+			}
+			var phone=mobile;
+			var temp='sms_reg';
+			var auth=md5(phone+temp);
+            if(countdown == 60){  
+                  $.ajax({
+                        type: "post", 
+                        url : "/api/user/sendVerifyCode",
+                        dataType:'json',
+                        data:{
+							phone:phone,
+							temp:temp,
+							auth:auth
+						},
+                        success: function(json){ 
+                        }
+                  });
+                  layer.msg('短信发送成功');  
+            }
+		if (countdown == 0) { 
+			val.removeAttribute("disabled");    
+			val.value="免费获取验证码"; 
+			countdown = 60;
+                  clearInterval(time)
+		}else{ 
+			val.setAttribute("disabled", true); 
+			val.value="重新发送(" + countdown + ")"; 
+			countdown--; 
+		} 
+		let time = setTimeout(function() { 
+			settime(val) 
+		},1000) 
+	}
+	//input输入框失去焦点，页面视觉回弹
+	$(".name").blur(function(){
+	  	document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	});
+      // 注册提交
+      $(".sub_btn").click(function(){
+            var mobile = $(".mobile").val();
+			// var pwd = $(".pwd").val();
+            // var pwd2 = $("#password2").val();
+            var smscode = $("#verify_code").val();
+            var invite_code = $(".invite_code").val();
+            if(!mobile){
+                  layer.msg('请输入手机号');
+                  return;
+			}
+			// if(pwd.length<6){
+			// 	layer.msg('请设置6-9位数字加字母密码');
+			// 	return;
+			// }
+			// if(!pwd){
+            //       layer.msg('请设置密码');
+            //       return;
+            // }
+            // if(!pwd2){
+            //       layer.msg('请输入确认密码');
+            //       return;
+            // }
+            // if(pwd!=pwd2){
+            //       layer.msg('两次密码输入不一致');
+            //       return;
+            // }
+            if(!smscode){
+                  layer.msg('请输入短信验证码');
+                  return;
+            }
+            if(mobile){
+                  $.post("{:url('api/user/doLogin')}",
+                        // {phone:mobile,inviteCode:invite_code,verify_code:smscode,password:pwd},
+                        {phone:mobile,invitation_code:invite_code,verify_code:smscode},
+                        function(msg){
+                        if(msg.status==200){
+                              layer.msg(msg.msg,function(){
+									self.location = "{:url('index/reg/app')}";
+                              });
+                        }else{
+                              layer.msg(msg.msg);
+                        }
+                  })
+            }
+      });
+</script>
+</body>
+</html>

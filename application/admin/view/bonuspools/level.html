@@ -1,0 +1,112 @@
+{extend name="common:base" /}
+{block name="style"}
+<style type="text/css">
+    .table>thead>tr>th {
+        text-align: center;
+    }
+</style>
+{/block}
+
+{block name="content"}
+<div class="ibox">
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="control-label" for="status">　</label>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ibox-content">
+        <div class="table-responsive">
+            <div style=" position:absolute; right:30px; top:170px;">
+                <a class="btn btn-sm btn-info" id="ad1d_virtual_num" data-toggle="modal"  style="margin-left: 20px;" href="{:url('bonuspools/level_add',['id'=>0],true)}">
+                    新增分奖金配置 <i class="fa fa-edit"></i>
+                </a>
+            </div>
+            <table class="table  table-bordered table-hover text-center">
+
+                <thead>
+                    <tr>
+                        <th>奖金池ID</th>
+                        <th>奖金名称</th>
+                        <th>分得奖金池比例</th>
+                        <th>分奖金条件(人数/名次)</th>
+                        <th>分奖金条件阐述</th>
+                        <th>奖金类</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {notempty name="list"}
+                    {volist name="list" id="vo"}
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.bonusname}</td>
+                        <td>{$vo.proportion}%</td>
+                        <td>
+                            {switch $vo.is_day }
+                            {case 0}{$vo.direct_num}人{/case}
+                            {case 1}第{$vo.direct_num}名{/case}
+                            {default /}其他
+                            {/switch}
+                        </td>
+                        <td>{$vo.desc}</td>
+                        <td>
+                        {switch $vo.is_day }
+                        {case 0}日奖金{/case}
+                        {case 1}月奖金{/case}
+                        {default /}其他
+                        {/switch}
+                        </td>
+                        <td>
+                            <a class='btn btn-default' href="{:url('bonuspools/level_edit',['id'=>$vo.id],false)}">编辑</a>
+
+                            <a class="btn btn-default delete" onclick="del(this,{$vo.id})" href="javascript:;" >删除 </i></a>
+                        </td>
+                    </tr>
+                    {/volist}
+                    {/notempty}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+{/block}
+{block name='script'}
+<script>
+    function del(obj, id) {
+        if (window.confirm('确认删除该等级吗？')) {
+            $.post("{:url('distribution/distribution_grade_del')}", { 'id': id }, function (data) {
+                alert(data.msg);
+                if (data.code) {
+                    $(obj).parents('tr').remove();
+                }
+            }, 'json');
+        }
+    }
+
+    function del(obj,id){
+        if(window.confirm('确认删除吗？')){
+            $.post("{:url('Bonuspools/del')}",{'id':id},function(data){
+                alert(data.msg);
+                if(data.code){
+                    $(obj).parents('tr').remove();
+                }
+            },'json');
+        }
+    }
+
+
+
+</script>
+{/block}

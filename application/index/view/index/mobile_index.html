@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Swiper demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="__STATIC__/nebula/css/index.css">
+  <link rel="stylesheet" href="__STATIC__/nebula/css/swiper.min.css">
+  <!-- Demo styles -->
+  <style>
+    .Percentage {
+      width: 100%;
+      height: 100% !important;
+      background: url(__STATIC__/nebula/img/bj.png);
+    }
+
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <ul>
+      <li class="show1">{$list[0]['title']}</li>
+      <li >{$list[5]['title']}</li>
+    </ul>
+  </header>
+  
+     <!-- Swiper -->
+  <div class="swiper-container W_title" id="box">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="page1  Percentage " style="background:url(__STATIC__/nebula/img/bj1.jpg) no-repeat center center;
+          background-size: cover;">
+          <div class="shouye">
+            <div class="oneText">
+            {$list[0]['content']}
+              <!-- 下载E览软件截图猜你喜欢下载地址相关文章网友点评,乐声企宣企业营销宣传视频制作神器app下载:是一款功能强大、简单便捷的手机视频在线制作平台,这款软件支持婚礼、招聘、招商、年会、产品宣传、公司介绍等内容视频,需要的用户欢迎下载!东声企宣企业营销宣传视频制作神器app下载特色：
+              <ul>
+                <li>1、快: DIY制作平台一键快速合成;</li>
+                <li>2、省:节省时间节省金钱节省人力;</li>
+                <li>3、广:全面覆盖48个行业场景需求;</li>
+                <li>4、多:提供1000套以上内容场景模板;</li>
+                <li>5、优:输入文字即可花样变配音。</li>
+              </ul> -->
+            </div>
+            
+            <div class="bpsimg">
+              <!-- <image src="img/bj1.jpg" /> -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="page2  Percentage">
+          <!-- <div class="page2title">(大标题)领先的存储共享服务平台</div> -->
+          <div class="page2con">
+            <!-- Nebula是一家稳定高效的数字货币矿池,专注于IPFS分布式存储领域的空间租赁托管和Fil, Lamb等多种数字货币的挖矿服务,支持USDT.Lamb. Fil, BTC,
+            ETH等多种付款方式。 Nebula矿池营造协同共享的新世界,欢迎全球矿工加入,共同构建人数一体的数据家园,一起分享高速增长的丰厚财富。欢迎加入我们:
+            <ul>
+              <li>QQ群：*******</li>
+              <li>微信公众号：******</li>
+              <li>客服：*********</li>
+            </ul> -->
+            
+            {$list[1]['content']}
+            
+          </div>
+          <!-- <div class="page2img">
+            <img src="__STATIC__/nebula/img/5.png">
+          </div> -->
+        </div> 
+      </div>
+      <div class="swiper-slide">
+        <div class="page3 Percentage">
+          <div class="page3box">
+            <div id="tit">
+              <span class="select">公告</span>
+              <span>资讯</span>
+            </div>
+            <ul id="con">
+              <li class="show">
+                <dl>
+                  
+                  {volist name="res_1" id="vo"}
+                    <dd class="page3li">
+                    <a class="page3t" href=" {:url('Index/mobile_dom',['id'=>$vo.id])}"> {$vo.title}</a>
+                    
+                    <!-- <div class="page3c"> -->
+                     <a class="page3c" href="{$vo.urllink}">点击前往原网页</a>
+                    
+                    <!-- </div> -->
+                    <div class="page3f">
+                    {$vo.create_time|date="Y-m-d H:i:s",###}
+                    </div>
+                    </dd>
+                  {/volist}
+                    <!-- <div class="page3t">矿池有效旷工16日开始</div>
+                    <div class="page3c">矿池有效旷工16日开始</div>
+                    <div class="page3f">2019-08-17 16：57</div> -->
+                  
+                </dl>
+              </li>
+              <li>
+                <dl>
+                  <dd class="page3li">
+                  {volist name="res_2" id="vo"}
+                   
+                    <a class="page3t" href=" {:url('Index/mobile_dom',['id'=>$vo.id])}"> {$vo.title}</a>
+                    
+                    <!-- <div class="page3c"> -->
+                     <a class="page3c" href="{$vo.urllink}">点击前往原网页</a>
+                    
+                    <!-- </div> -->
+                    <div class="page3f">
+                    {$vo.create_time|date="Y-m-d H:i:s",###}
+                    </div>
+                  {/volist}
+                    <!-- <div class="page3t">矿池有效旷工17日开始</div>
+                    <div class="page3c">矿池有效旷工18日开始</div>
+                    <div class="page3f">2019-08-17 16：57</div> -->
+                  </dd>
+                </dl>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="page4 Percentage">
+          
+           <div class="page4con" style="text-align: left;">
+          
+          {$list[3]['content']}
+         
+          </div> 
+          
+          <!-- <div class="page4img">
+            <img src="__STATIC__/nebula/img/5.png">
+          </div> -->
+        </div>
+      </div>
+      <div class="swiper-slide ">
+        <div class="page5 Percentage" >
+          <div class="page4box">
+            <div class="page4con">
+              <div class="wenzi">
+                {$list[4]['content']}
+                </div>
+          </div>
+            <!-- <div class="page5top">
+              下载APP链接
+            </div>
+            <div class="page5f">安卓: https://wjsajfklasfl.com</div>
+            <div class="page5f">苹果: https://wjsajfklasfl.com</div> -->
+          </div>
+          <div class="bpsimg">
+            <image src="__STATIC__/nebula/img/solid3.png" />
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- Add Pagination -->
+    <div class="m_mune">
+
+      <div class="swiper-pagination">
+      </div>
+      <div class="anniu "></div>
+    </div>
+
+  </div>
+  <div class="tabs bps W_title" style="display: none;">
+  <div class="page1con">
+    <br/> <br/> <br/> <br/>
+    <div class="wenzi" style="margin-top: 4.5rem;width:80%">
+      
+        <image width="300px" src="{$list[5]['content']}" />
+        
+    </div>
+    </div>
+    <!-- <div class="bpsimg">
+        <image src="__STATIC__/nebula/img/solid3.png" />
+
+    </div> -->
+</div>
+
+ 
+  <!-- Swiper JS -->
+  <script src="__STATIC__/nebula/js/jquery.min.js"></script>
+  <script src="__STATIC__/nebula/js/swiper.min.js"></script>
+ 
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      direction: 'vertical',
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+    
+  </script>
+    <!-- <script src="__STATIC__/nebula/js/index.js"> -->
+   <script >
+// 标题选项卡
+var header = document.getElementsByTagName('header');
+var title = document.getElementsByClassName('W_title');
+var lis = header[0].getElementsByTagName('li');
+console.log(title,"666");
+
+for (var i = 0; i < lis.length; i++) {
+	lis[i].index = i;
+	lis[i].onclick = function () {
+		console.log(this);
+		//点击哪个元素，那么this就是哪个
+		for (var j = 0; j < lis.length; j++) {
+			lis[j].className = "";
+			title[j].style = "display:none";
+		}
+		this.className = 'show1';
+		title[this.index].style = "display:block";
+	}
+}
+
+// 生成菜单导航
+var swiperPagination = document.getElementsByClassName('swiper-pagination-bullet');
+console.log(swiperPagination)
+var menu = ["{$list[0]['title']}", "{$list[1]['title']}", "{$list[2]['title']}", "{$list[3]['title']}", "{$list[4]['title']}"];
+// console.log(menu[0]);
+for (let i = 0; i < swiperPagination.length; i++) {
+	swiperPagination[i].innerHTML = menu[i];
+}
+
+// 公告和资讯
+var news = document.getElementById('tit');
+var con = document.getElementById('con');
+console.log(news);
+var conLis = con.getElementsByTagName('li');
+var span = news.getElementsByTagName('span');
+
+for (var i = 0; i < span.length; i++) {
+	span[i].index = i;
+	span[i].onclick = function () {
+		console.log(this);
+		//点击哪个元素，那么this就是哪个
+		for (var j = 0; j < span.length; j++) {
+
+			span[j].className = "";
+			conLis[j].className = "";
+		}
+		this.className = 'select';
+		conLis[this.index].className = 'show';
+	}
+}
+/*
+ 菜单隐藏：
+	 当打开页面时开启定时器；三秒没有操作就自动隐藏菜单；
+	 一版点击按钮图标出现菜单再点隐藏；
+	 二版点击按钮图标出现菜单，三秒后自动隐藏；
+*/
+var swiperpagination = document.getElementsByClassName('swiper-pagination')[0];
+console.log(swiperpagination);
+var t = 3;
+
+function fun() {
+	t--;
+	if (t <= 0) {
+		swiperpagination.style = "display:none";
+		clearInterval(inter);
+	}
+}
+var inter = setInterval("fun()", 1000);
+// 点击图标出现影藏
+
+var menu = document.getElementsByClassName('m_mune')[0];
+var anniu = menu.getElementsByClassName('anniu')[0];
+//  设置状态，当点击后方便取反操作
+var state = true;
+
+anniu.onclick = function () {
+	if (state) {
+
+		swiperpagination.style = "display:block"
+		console.log(666)
+		inter = setInterval("fun()", 3000);
+	} else {
+		swiperpagination.style = "display:none"
+		console.log(555)
+		// inter = setInterval("fun()", 3000);
+	}
+	// state = !state;
+}
+
+
+   </script>
+</body>
+
+</html>

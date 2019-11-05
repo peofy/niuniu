@@ -1,0 +1,88 @@
+{extend name="common:base" /}
+{block name="style"}
+<style type="text/css">
+.table>thead>tr>th {
+    text-align: center;
+}
+</style>
+{/block}
+
+{block name="content"}
+<div class="ibox">
+    <div class="ibox-content">
+            <div class="row">
+               <form  method="get" action="{:url()}">
+                            <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label class="control-label" for="status">处理状态</label>
+                                        <select name="refundstatus" class="form-control" style="width:180px;">
+                                                {foreach $refund_status as $key => $vo}
+                                                    <option value="{$key}" {$Think.get.refundstatus==$key?='selected' }>{$vo}</option>
+                                                 {/foreach}
+                                         </select>
+                                    </div>
+                             </div>
+
+                        
+                            <div class="col-sm-1">
+                                    <div class="form-group">
+                                        <label class="control-label" for="status">　</label>
+                                        <div>
+                                            <button class="btn btn-primary">查询</button>
+                                        </div>
+                                    </div>
+                              </div>
+                </form>
+           </div>
+       </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table  table-bordered table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="col-lg-2">充值订单ID</th>
+                                    <th>用户ID</th>
+                                    <th>用户名</th>
+                                    <th>手机号</th>
+                                    <th>充值方式</th>
+                                    <th>充值金额(人民币)</th>
+                                    <th>充值日期</th>
+                                    <th>审核状态</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead> 
+                            <tbody>
+                                {notempty name="list"}
+                                {volist name="list" id="vo"}
+                                <tr>
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo.mid}</td>
+                                    <td>{$vo.realname}</td>
+                                    <td>{$vo.mobile}</td>
+                                    <td>
+                                        {eq name="$vo.recharge_type" value="1"}
+                                           微信
+                                        {else/}
+                                            支付宝
+                                        {/eq}
+                                    </td>
+
+                                    <td>{$vo.money}（{$vo.australian_dollar}澳元）</td>
+                                    <td>{$vo.create_time|date="y-m-d H:i:s",###}</td>
+                                    <td>{$refund_status[$vo.handle_status]}</td>
+                                    <td>
+                                        <a class="btn btn-default" href="{:url('finance/recharge_edit',['id'=>$vo.id])}"><i class="fa fa-list"></i> 查看</a>
+
+                                    </td>
+                                </tr>
+                                {/volist}
+                                {/notempty}
+                            </tbody>
+                        </table>
+                        {$list->render()}
+                    </div>
+                </div>
+                
+
+
+{/block}

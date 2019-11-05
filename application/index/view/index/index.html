@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="__STATIC__/index/css/swiper.min.css">
+<style>
+
+body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+		height: 100%;
+		overflow: hidden;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background-color: #1d1548;
+    }
+	.swiper-wrapper{
+    transition-delay:.3s;
+    }
+    .swiper-container {
+        width: 100%;
+		min-width: 1300px;
+        height: 670px;
+        margin: 0px auto;
+    }
+	.swiper-container-h {
+      width: 100% ;
+      height: 100%;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+		color: #fff;
+		background-position: bottom center;
+		background-repeat: no-repeat;
+		background-size: contain;
+        /* background: #fff; */
+        
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+	.swiper-slide p{
+		width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+	}
+	/* .swiper-slide p span{} */
+	.swiper-slide p span b{
+		display: block;
+		margin: 20px;
+		font-size: 30px;
+	}
+	.swiper-slide p span font{
+		display: block;
+		text-indent: 40px;
+		font-size: 18px;
+		line-height: 40px;
+		text-align: left;
+		letter-spacing: 1px;
+	}
+	/* .swiper-slide:nth-child(odd){
+		background:#3183ff;
+		color:#fff;} */
+	.swiper-slide p{
+		transform:translateX(-200px);
+		opacity:0;
+		transition:all .4s;
+		}
+		
+	.ani-slide p{
+		transform:translateX(0);
+		opacity:1;
+		}
+	
+	
+	
+	.swiperListSide{
+		position: fixed;
+		right: 10px;
+		top: 50%;
+		margin-top: -150px;
+		overflow: hidden;
+		height: 300px;
+		z-index: 99999;
+	}
+	.swiperListSide a{
+		width: 80px;
+		background-color: #fff;
+		color: #0074EA;
+		height: 40px;
+		margin: 5px 0;
+		text-align: center;
+		display: block;
+		text-decoration: none;
+		line-height: 40px;
+		font-size: 12px;
+		/* border: 1px solid #f1f1f1; */
+	}
+	.swiperListSide .active,.swiperListSide a:hover{
+		/* background-color: #3183FF; */
+		background-color: rgb(0, 116, 234);
+		color: #fff;
+		/* border: 1px solid #fff; */
+	}
+	.hvrList{
+		position: fixed;
+		top: 0;
+		height: 70px;
+		background-color:rgba(255,255,255,0.2);
+		z-index: 999999;
+		width: 100%;
+	}
+	.hvrList .nvrList{
+		width: 1200px;
+		height: 70px;
+		margin: 0 auto;
+		position: relative;
+	}
+	.hvrList .nvrList .pageLogo {
+		width: 200px;
+		float: left;
+		height: 70px;
+	}
+	.hvrList .nvrList .pageLogo img{
+		margin-top: 17.5px;
+		height: 35px;
+	}
+	.hvrList .nvrList .nvr-a-list{
+		width: 800px;
+		float: right;
+		color: #fff;
+		text-align: right;
+		height: 70px;
+	}
+	.hvrList .nvrList .nvr-a-list a{
+		text-decoration: none;
+		color: #fff;
+		font-size: 16px;
+		line-height: 24px;
+		padding: 10px 30px;
+		height: 24px;
+		display: inline-block;
+		font-family: "微软雅黑";
+		margin: 13px 0;
+	}
+	.hvrList .nvrList .nvr-a-list .active,.hvrList .nvrList .nvr-a-list a:hover{
+		/* color: #1d1548; */
+		background-color: #0074EA;
+		border-radius: 30px;
+		color: #fff;
+	}
+	.hvrList .nvrList .nvr-a-list a img{
+		height: 26px;
+    vertical-align: text-top;
+    margin-right: 10px;
+	}
+	.hvrList .nvrList .nvr-a-list b{
+		color: #fff !important;
+    /* line-height: 40px; */
+		display: block;
+		float: right;
+		margin-top: 3px;
+		margin-left: 3px;
+	}
+	.aboutUs{
+		position: fixed;
+		bottom: 0px;
+		background-color: rgba(255,255,255,0.2);
+		height: 30px;
+		line-height: 35px;
+		text-align: center;
+		color: #fff;
+		width: 100%;
+		z-index: 9999999;
+		font-size: 12px;
+		/* font-family: "宋体"; */
+		letter-spacing: 1px;
+	}
+	.lang-select{
+		width: 150px;
+		background-color: #fff;
+		overflow: hidden;
+		    position: absolute;
+		right: 0;
+		top: 20px;
+		display: none;
+	}
+	.lang-select a{
+		width: 100%;
+		display: block;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		color: #3183FF;
+		text-decoration: none;
+		font-size: 18px;
+		margin: 1px 0;
+	}
+	.lang-select a img{
+		height: 26px;
+		vertical-align: middle;
+		margin-right: 10px;
+		margin-top: -5px;
+	}
+	.lang-select a:hover{
+		background-color: #3183FF;
+		color: #fff;
+	}
+    
+        </style>
+<body>
+        <div class="swiper-container swiper-container-h swiper-container-initialized swiper-container-vertical" style="height: 969px;">
+                <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                    <div class="swiper-slide swiper-slide-active ani-slide" id="slideA" style="position: relative; height: 969px;"><!--style="background-image: url(img/banner1.jpg);"-->
+                        <p
+                            style="background-image: url({$list[0]['img']});  overflow: hidden; height: 100%; width: 100%; background-position: center center; background-size: 100%;">
+                        </p>
+						 <!-- <p
+                            style="background-image: url(__STATIC__/index/img/banner3.jpg);  overflow: hidden; height: 100%; width: 100%; background-position: center center; background-size: 100%;">
+                        </p> -->
+        <!-- 				<p style="background-image: url(img/banner2.jpg); position: absolute; overflow: hidden; height: 100%; width: 100%; background-position: center center; background-size: 100%;">
+                        </p> -->
+                </div>
+                <div class="swiper-slide swiper-slide-active ani-slide" style="background-image:url(&quot;({$list[1]['img']}&quot;); height: 888px;">
+                    <p>
+						<img style="float: left;" src="{$list[1]['content_img']}">
+						<span>
+							<b>【{$list[1]['title']}】</b>
+							<font>
+							{$list[1]['content']}
+							</font>
+						</span>
+					</p>
+					</div>
+                    <div class="swiper-slide"
+                        style="background-image: url(&quot;{$list[2]['img']}&quot;); height: 969px;">
+                        <p>
+                        <span>
+                            <b>【{$list[2]['title']}】</b>
+                            <font>
+                               {$list[2]['content']}
+                            </font>
+                        </span>
+                    </p></div>
+
+                    <div class="swiper-slide"
+                        style="background-image: url(&quot;{$list[3]['img']}&quot;); height: 969px;">
+                        <p>
+                        
+                        <span>
+                             <b>【{$list[3]['title']}】</b>
+                            <font>
+                               {$list[3]['content']}
+                            </font>
+                        </span>
+                        <img style="float: left;" src="{$list[3]['content_img']}">
+                    </p></div>
+
+                    <div class="swiper-slide"
+                        style="background-image: url(&quot;{$list[4]['img']}&quot;); height: 969px;">
+                        <p>
+                        <img style="float: left;" src="{$list[4]['content_img']}">
+                        <span>
+                            <b>【{$list[4]['title']}】</b>
+                            <font>
+                                {$list[4]['content']}
+                            </font>
+                        </span>
+                    </p></div>
+
+                    <div class="swiper-slide"
+                        style="background-image: url(&quot;{$list[5]['img']}&quot;); height: 969px;">
+                        <p>
+                        <img style="float: left;" src="{$list[5]['content_img']}">
+                        <span>
+                            <b>【{$list[5]['title']}】</b>
+                            <font>
+                                {$list[5]['content']}
+                                </font>
+                        </span>
+                        
+                    </p></div>
+
+
+
+                    <!-- <div class="swiper-slide"><p>
+                    <span style="width: 100%; text-align: center;">
+                            <b>&nbsp;&nbsp;&nbsp;&nbsp;【平台联系邮箱】</b>
+                            <font style="width: 100%; text-align: center;">DataMininhAlliance@gmail.com
+                            </font>
+                        </span>
+                        </p></div> -->
+                </div>
+                <div class="swiper-pagination">
+                </div> 
+                <div class="swiperListSide">
+				    {volist name="list" id="vo"}
+                    <a href="javascript:;" {eq name="vo['id']" value="4"} class="active" {/eq}>{$vo.title}</a>
+                    <!-- <a href="javascript:;" class="">项目简介</a>
+                    <a href="javascript:;" class="">算力租用</a>
+                    <a href="javascript:;" class="">权益质押</a>
+                    <a href="javascript:;" class="">量化交易</a>
+                    <a href="javascript:;" class="">数字借贷</a> -->
+					{/volist}
+                    <!-- <a href="javascript:;">联系邮箱</a> -->
+                </div>
+                
+                <div class="hvrList">
+                    <div class="nvrList">
+                        <div class="pageLogo"><img src="{$logo}"></div>
+                        <div class="nvr-a-list">
+                            <a href="javascript:;" class="active">首页</a>
+                            <!-- <a href="whitepaper/projectdma_whitepaper.pdf" target="_blank">白皮书</a>
+                            <a href="https://etherscan.io/token/0x0002562b9c0a85ebb92989fc02d6486b3d0ccbeb" target="_blank">区块链浏览器</a>
+                            <a href="javascript:;" id="langDiv" onclick="changeLan()" style="color: #fff !important;"><img style="" src="img/chinese.png">中文&nbsp;<b>﹀</b> </a>﹀  -->
+                            
+                        </div>
+                        <!-- <div class="lang-select">
+                            <a href="javascript:;" onclick="langClick(1)"><img style="" src="img/chinese.png">中文</a>
+                            <a href="javascript:;" onclick="langClick(2)"><img style="" src="img/english.png">英文</a>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="aboutUs">
+                    平台联系邮箱：DataMininhAlliance@gmail.com
+                </div>
+           
+</body>
+
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="__STATIC__/index/js/swiper.min.js"></script>
+<script>
+	$(".swiper-container").height($(window).height())
+    var swiper = new Swiper('.swiper-container-h',{
+		direction : 'vertical',
+		followFinger : false,
+		speed:800,
+		paginationType : 'custom',
+		mousewheel: true,
+		on:{
+			init:function(swiper){
+		        slide=this.slides.eq(0);
+			    slide.addClass('ani-slide');
+		    },
+			transitionStart: function(){
+			    for(i=0;i<this.slides.length;i++){
+			    	slide=this.slides.eq(i);
+			        slide.removeClass('ani-slide');
+				}
+		    },
+			transitionEnd: function(){
+				slide=this.slides.eq(this.activeIndex);
+			    slide.addClass('ani-slide');
+				$(".swiperListSide a").removeClass("active")
+				$(".swiperListSide a").eq(this.activeIndex).addClass("active")
+		    },
+		}
+    });
+	
+	var swiperV = new Swiper('.swiper-container-v', {
+      direction: 'vertical',
+      spaceBetween: 50,
+      pagination: {
+        el: '.swiper-pagination-v',
+        clickable: true,
+      },
+    });
+	
+	
+    $(".swiperListSide").on("click","a",function(e){
+		// alert($(this).index())
+		swiper.slideTo($(this).index(), 800, false);
+	})
+	function changeLan(){
+		$(".lang-select").show();
+	}
+	function langClick(a){
+		if(a==1){
+			$("#langDiv").html("<img style src=\"__STATIC__/index/img/chinese.png\" />中文&nbsp;<b>﹀</b> ");
+					
+		}
+		if(a==2){
+			$("#langDiv").html("<img style src=\"__STATIC__/index/img/english.png\" />英文&nbsp;<b>﹀</b> ")
+		}
+		$(".lang-select").hide();
+	}
+</script>
+</html>

@@ -1,0 +1,92 @@
+{extend name="common:base" /}
+{block name="style"}
+<style type="text/css">
+    .table>thead>tr>th {
+        text-align: center;
+    }
+</style>
+{/block}
+
+{block name="content"}
+<div class="ibox">
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="control-label" for="status">　</label>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <div class="table-responsive">
+            <table class="table  table-bordered table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>等级ID</th>
+                        <th>等级名称</th>
+                        <!-- <th>晋升奖励</th> -->
+                        <!-- <th>节点推荐比例</th> -->
+                        <th>团队人数条件</th>
+                        <th>业绩金额条件</th>
+                        <!-- <th>平级比例</th>
+                        <th>平级获奖层数</th>
+                        <th>升级条件</th>-->
+                        <th>升级条件阐述</th> 
+                        <th>购买产品直推奖励</th>
+                        <th>购买产品间推奖励</th>
+                        <th>符合条件奖励的金额</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {notempty name="list"}
+                    {volist name="list" id="vo"}
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.levelname}</td>
+                        <!-- <td>{$vo.upgrade_bonus}</td> -->
+                        <!-- <td>{$vo.recommend * 100}%</td> -->
+                        <td>{$vo.team_num}</td>
+                        <td>{$vo.agent_amount}</td>
+                        <!-- <td>{$vo.pingji_level * 100}%</td>
+                        <td>{$vo.layer_number}</td>
+                        <td>{$vo.upgrade}</td> -->
+                        <td>{$vo.desc}</td>
+                        <td>{$vo.direct_rate*100}%</td>
+                        <td>{$vo.indirect_rate*100}%</td>
+                        <td>{$vo.agent_bonus}</td>
+                        <td>
+                            <a class='btn btn-default' href="{:url('member/level_edit',['id'=>$vo.id],false)}">编辑</a>
+                        </td>
+                    </tr>
+                    {/volist}
+                    {/notempty}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+{/block}
+{block name='script'}
+<script>
+    function del(obj, id) {
+        if (window.confirm('确认删除该等级吗？')) {
+            $.post("{:url('distribution/distribution_grade_del')}", { 'id': id }, function (data) {
+                alert(data.msg);
+                if (data.code) {
+                    $(obj).parents('tr').remove();
+                }
+            }, 'json');
+        }
+    }
+
+</script>
+{/block}
